@@ -3,7 +3,7 @@ dotenv.config({
     quiet: true,
     path: "./.env"
 })
-import express from "express";
+
 import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
@@ -20,8 +20,10 @@ app.use(express.urlencoded({
 }));
 app.use(express.static("public"));
 app.use(cookieParser())
-app.get('/',(req,res) =>{
-    res.send("<h1>Hello</h1>")
-})
+
+import express from "express";
+import userRouter from "./routes/user.router.js";
+
+app.use("/api/v1/users", userRouter);
 
 export default app;
