@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import express from "express";
 dotenv.config({
     quiet: true,
     path: "./.env"
@@ -21,7 +22,7 @@ app.use(express.urlencoded({
 app.use(express.static("public"));
 app.use(cookieParser())
 
-import express from "express";
+
 import userRouter from "./routes/user.router.js";
 
 app.use("/api/v1/users", userRouter);
