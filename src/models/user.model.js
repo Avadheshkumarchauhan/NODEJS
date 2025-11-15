@@ -5,7 +5,7 @@ import JWT from "jsonwebtoken";
 config({
     quiet: true,
     path: "./.env"
-})
+});
 const userSchema = new mongoose.Schema(
  {
     username: {
@@ -83,7 +83,7 @@ userSchema.methods.generateAccessToken = function (){
         }   
     )
 }
-userSchema.methods.generateAccessToken = function (){
+userSchema.methods.generateRefreshToken = function (){
    return JWT.sign(
         {
             _id: this.id          
