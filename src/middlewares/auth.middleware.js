@@ -7,10 +7,11 @@ import { ApiError } from "../utills/ApiError.js";
 import { asyncHandler } from "../utills/asycHandler.js"
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
-const verifyJWT = asyncHandler(async (requestAnimationFrame, res, next) =>{
+const verifyJWT = asyncHandler(async (req, res, next) =>{
    try {
      const token = req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ", "");
- 
+       // console.log("token",req.cookies.accessToken);
+         
      if (!token) {
          throw new ApiError(401,"Unauthorized request ");
      }
