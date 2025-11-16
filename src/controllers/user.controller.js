@@ -231,6 +231,17 @@ const changeCurrentPassword = asyncHandler(async(req, res) => {
         )
     )
 });
+const getUser = asyncHandler(async(req, res) => {
+
+    return res.status(200)
+    .json(
+        new ApiResponse(
+            200,
+            {data:req.user},
+            "Current user fetched successfully "
+        )
+    )
+})
 
 export {
     registerUser,
@@ -239,4 +250,5 @@ export {
     LogoutUser,
     refreshAccessToken,
     changeCurrentPassword,
+    getUser,
 }
