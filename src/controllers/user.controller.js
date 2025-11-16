@@ -207,9 +207,29 @@ try {
             )
         )
 } catch (error) {
-    new ApiError(401, error?.message || "Invalid refresh token ")
-    
+    new ApiError(401, error?.message || "Invalid refresh token ") 
 }
+});
+
+const changeCurrentPassword = asyncHandler(async(req, res) => {
+    const {oldPassword , newPassword} = req.body;
+    const user = await User.findById(req.user?._id);
+    const isPassword = await user.isPasswordCorrect(oldPassword);
+    if(!isPassword){
+        throw new ApiError(400,"Invalid old Password");
+    }
+    user.password = newPassword;
+    await user.save({validateBeforeSave: false});
+
+    return res.
+    status(200)
+    .json(
+        new ApiResponse(
+            200,
+            {},
+            "Password change successfully "
+        )
+    )
 });
 
 export {
@@ -217,5 +237,6 @@ export {
     homePage,
     LoginUser,
     LogoutUser,
-    refreshAccessToken
+    refreshAccessToken,
+    changeCurrentPassword,
 }
