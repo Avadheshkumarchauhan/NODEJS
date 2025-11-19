@@ -270,7 +270,7 @@ const updateAccountDetails = asyncHandler(async(req, res ) => {
 
 const updateAvatar = asyncHandler(async(req, res) => {
 
-    const avatarLocalpath = req.files?.avatar[0].path;
+    const avatarLocalpath = req.file.path;
    
 
     if(!avatarLocalpath){
@@ -298,7 +298,7 @@ const updateAvatar = asyncHandler(async(req, res) => {
 });
 const updateCoverImage = asyncHandler(async(req, res) => {
 
-    const coverImageLocalpath = req.files?.coverImage[0].path;
+    const coverImageLocalpath = req.file.path;
     //console.log(req);
     
 

@@ -33,32 +33,25 @@ router.route("/login").post(LoginUser);
    /**
     * Logout page
     */
-router.route("/logout").post(verifyJWT,LogoutUser)
+router.route("/logout").get(verifyJWT,LogoutUser)
 
 router.route("/refresh-token").post(refreshAccessToken)
 
-router.route("/changePassword").post(verifyJWT,changeCurrentPassword)
+router.route("/changePassword").patch(verifyJWT,changeCurrentPassword)
 
-router.route("/profile").post(verifyJWT,getUser)
+router.route("/profile").get(verifyJWT,getUser)
 
-router.route("/updateAccount").post(verifyJWT,updateAccountDetails)
+router.route("/updateAccount").patch(verifyJWT,updateAccountDetails)
 
-router.route("/updateAvatar").post(verifyJWT,
-    upload.fields([
-         {
-            name: "avatar",
-            maxCount: 1
-         },         
-      ]),updateAvatar)
+router.route("/updateAvatar").patch(verifyJWT,
+    upload.single(
+      "avatar"        
+      ),updateAvatar)
       
-router.route("/updateCoverImage").post(verifyJWT,
-    upload.fields([
-         {
-            name: "coverImage",
-            maxCount: 1
-         }
-         
-      ])
+router.route("/updateCoverImage").patch(verifyJWT,
+    upload.single(
+         "coverImage"
+      )
    ,updateCoverImage)
 
 
